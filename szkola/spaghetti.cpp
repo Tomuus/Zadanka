@@ -1,5 +1,5 @@
-#include <sstream>
 #include <iostream>
+#include <cstdio>
 
 using namespace std;
 
@@ -26,12 +26,12 @@ int main()
     }
     for(i=1;i<=y;i++)
     {
-        stringstream ss;
         for(j=1;j<=x;j++)
         {
             mapka[j][i]+=mapka[j-1][i];
-            ss <<mapka[j][i]<<' ';
+            printf("%d",mapka[j][i]);
+            printf(" ");
         }
-        cout<<ss.str()<<endl;
+        printf("\n");
     }
 }
