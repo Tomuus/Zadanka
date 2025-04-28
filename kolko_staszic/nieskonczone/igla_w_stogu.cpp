@@ -4,14 +4,17 @@
 
 using namespace std;
 
-int tab[200000], mps[200000];
+int tab[400002];
 int i;
 
-int find(int s, int pi, string n)
+int find (int s, int pi, string n)
 {
-	if(s==0) return 0;
-	if(n[pi]==n[tab[s-1]] and pi-tab[s-1]>tab[s-1]) return tab[s-1]+1;
-	else return find(mps[s-1],pi,n);
+	while(s>0)
+	{
+		if(n[pi]==n[tab[s-1]]) return tab[s-1]+1;
+		s=tab[s-1];
+	}
+	return 0;
 }
 
 int main()
@@ -31,7 +34,6 @@ int main()
 	for(i=0;i<c;i++)
 	{
 		tab[i]=find(i,i,n);
-		mps[i]=max(tab[i],mps[i-1]);
 		//cout<<tab[i]<<' ';
 		if(tab[i]==s){
 			l++;
