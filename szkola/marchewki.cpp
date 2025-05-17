@@ -8,27 +8,25 @@ long long pkt(long long r)
     long long ans = 0;
     for (long long x = -r; x <= r; ++x)
     {
-        long long max_y = (long long)floor(sqrt((long double)r * r - (long double)x * x));
-        ans += 2 * max_y + 1;
+        long long troj=(long long)floor(sqrt((long double)r * r - (long double)x * x));
+        ans+=troj+1;
     }
-    return ans;
-}
-
-int bins(int s,int p,int l)
-{
-    int m=(p+l)/2;
-    if(l<p) return m+1;
-    if(pkt(m)==s) return m;
-    if(pkt(m)>s) return bins(s,p,m-1);
-    else return bins(s,m+1,l);
+    return ans*4 - 4*r - 3;
 }
 
 
 int main()
 {
     long long n;
-    //cout<<pkt(2);
+    //cout<<pkt(8765543);
     cin >> n;
-    cout<<bins(n,0,1000000);
+    int lewy=0,prawy=(long long)ceil(sqrt(n / M_PI)) + 1000;
+    while(lewy<prawy)
+    {
+        long long m=(lewy+prawy)/2;
+        if(pkt(m)>=n) prawy=m;
+        else lewy=m+1;
+    }
+    cout<<lewy;
     return 0;
 }
