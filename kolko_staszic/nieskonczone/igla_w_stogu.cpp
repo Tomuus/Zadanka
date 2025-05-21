@@ -4,10 +4,10 @@
 
 using namespace std;
 
-int tab[400002];
-int i;
+long long tab[400007];
+long long i;
 
-int find (int s, int pi, string n)
+long long find (long long s, long long pi, string n)
 {
 	while(s>0)
 	{
@@ -22,9 +22,9 @@ int main()
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
 	//cout<<'7';
-	vector <int> odp;
+	vector <long long> odp;
 	string n,a;
-	int c,l=0,s;
+	long long c,l=0,s;
 	cin>>a>>n;
 	n=a+'$'+n;
 	c=n.size();
@@ -37,7 +37,7 @@ int main()
 		//cout<<tab[i]<<' ';
 		if(tab[i]==s){
 			l++;
-			odp.push_back(i-s-2);
+			odp.push_back(i-s-s+1);
 		}
 	}
 	cout<<l<<endl;
