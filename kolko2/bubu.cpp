@@ -56,12 +56,13 @@ int main()
         graf[tmp].push_back({h,tmp2});
         graf[tmp2].push_back({h,tmp});
     }
-    cout<<'!';
+    //cout<<'!';
     for(i=0;i<s;i++)
     {
         cin>>tmp;
         straz.push_back(tmp);
     }
+    //cout<<'a';
     cin>>tmp;
     kolejki(tmp);
     int goal=odl[1];
@@ -72,7 +73,8 @@ int main()
         fill(odl, odl + 500007, 999999999);
         fill(visited, visited + 500007, 0);
         kolejki(k);
-        if(odl[1]<goal)
+        //cout<<odl[1];
+        if(odl[1]<=goal)
         {
             cout<<-1;
             return 0;

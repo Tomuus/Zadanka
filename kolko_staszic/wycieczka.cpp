@@ -1,18 +1,20 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 long long dziel(vector <long long> tab, long long goal, long long n)
 {
-    long long ans=1,last=tab[0];
+    long long ans=1,curr=tab[0];
     for(int i=1;i<n;i++)
     {
-        if(tab[i]-last>=goal)
+        if(curr+tab[i]>goal)
         {
-            last=tab[i];
+            curr=tab[i];
             ans++;
         }
+        else curr+=tab[i];
     }
     return ans;
 }
@@ -25,16 +27,16 @@ int main()
     for(i=0;i<n-1;i++)
     {
         cin>>tab[i];
-        if(i!=0) tab[i]+=tab[i-1];
     }
     //cout<<dziel(tab,7,n);
-    long long p=1000000000,l=0;
+    long long p=999999999999999999,l=*max_element(tab.begin(), tab.begin() + n - 1);;
     while(p>l)
     {
-        long long mid=(p+l+1)/2;
-        if(dziel(tab,mid,n-1)>=m) l=mid;
-        else p=mid-1;
+        long long mid=(p+l)/2;
+        //cout<<dziel(tab,mid,n-1)<<'d'<<mid<<' ';
+        if(dziel(tab,mid,n-1)>m) l=mid+1;
+        else p=mid;
     }
     if(p==0) cout<<1;
-    else cout<<p;
+    else cout<<l;
 }
