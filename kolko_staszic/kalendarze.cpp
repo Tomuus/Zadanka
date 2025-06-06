@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <sched.h>
 
@@ -5,6 +6,8 @@ using namespace :: std;
 
 int main ()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
     int i,arbuz,banan,tmp,tmp1,n,dzien;
     char k;
     cin>>arbuz>>banan;
@@ -31,13 +34,13 @@ int main ()
         if(k=='A')
         {
             dzien=taba[tmp1-1]+tmp;
-            while(tabb[i]<dzien) i++;
+            i=lower_bound(tabb,tabb+banan+1,dzien)-tabb;
             cout<<dzien-tabb[i-1]<<' '<<i;
         }
         else
         {
             dzien=tabb[tmp1-1]+tmp;
-            while(taba[i]<dzien) i++;
+            i=lower_bound(taba,taba+arbuz+1,dzien)-taba;
             cout<<dzien-taba[i-1]<<' '<<i;
         }
         //cout<<'*'<<dzien<<'#';
