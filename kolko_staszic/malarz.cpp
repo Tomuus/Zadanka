@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_map>
+#include <ext/pb_ds/assoc_container.hpp>
 
 //jezu to jest jakas czarna magia
 //dobra zaraz to ogarne i naucze sie moze jakos z pamieci pisac
@@ -67,7 +68,7 @@ int main()
         cin>>x>>a>>b;
         a--; b--;
         if(x=='*') {apdejt(1,0,ll-1,a,b,1);}
-        else cout<<b-a+1-przedzial(a,b,0,ll-1,1)<<endl;
+        else cout<<b-a+1-przedzial(a,b,0,ll-1,1)<<'\n';
         //for(int j=ll;j<ll+n;j++) cout<<tab[j]<<' ';
         //cout<<endl;
     }
