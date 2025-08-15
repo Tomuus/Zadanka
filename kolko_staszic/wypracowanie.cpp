@@ -28,8 +28,8 @@ void join(int x,int y)
 
 int main()
 {
-    //ios_base::sync_with_stdio(false);
-    //cin.tie(nullptr);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
     int i,n,tmp,tmp1;
     string a;
     cin>>n;
@@ -40,8 +40,8 @@ int main()
         jmn[i]=tmp1;
         jmx[i]=tmp1;
     }
-    do{
-        cin>>a>>tmp;
+    while(cin>>a){
+        cin>>tmp;
         if(a=="GRUPA")
         {
             cin>>tmp1;
@@ -50,18 +50,15 @@ int main()
         }
         if(a=="LICZBA_SLOW")
         {
-            cout<<slow[find(tmp)];
-            cout<<endl;
+            cout<<slow[find(tmp)]<<endl;
             continue;
         }
         if(a=="JAKOSC_MIN")
         {
-            cout<<jmn[find(tmp)];
-            cout<<endl;
+            cout<<jmn[find(tmp)]<<endl;
             continue;
         }
-        cout<<jmx[find(tmp)];
-        cout<<endl;
-    }while(a!="k");
+        cout<<jmx[find(tmp)]<<endl;
+    }
     return 0;
 }

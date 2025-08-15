@@ -3,18 +3,24 @@
 
 using namespace std;
 
+typedef long long ll;
+
 vector <pair<long long, long long>> graf[500007];
-long long jump[500007][20];
+pair<ll,ll> jump[500007][20];
 long long deph[500007];
 long long patyk[500007];
 long long kijek[500007];
 
 void kolejki(int p, int parent)
 {
-    jump[p][0]=parent;
-    patyk[p]=patyk[parent]+kijek[p]; //wannabe sumy prefiksowe (to ma taie male szanse ze dziala)
+    jump[p][0]={parent,kijek[p]};
+    int x=jump[p][0].first;
+    patyk[p]=max(patyk[parent],kijek[p]); //wannabe sumy prefiksowe (to ma taie male szanse ze dziala)
     long long i;
-    for(i=1;i<20;i++) jump[p][i]=jump[jump[p][i-1]][i-1];
+    for(i=1;i<20;i++)
+    {
+        jump[p][i]={jump[jump[p][i-1].first][i-1].first,0};
+    }
     for(auto [i,w] : graf[p])
     {
         if(i==parent) continue;
@@ -28,7 +34,7 @@ int lift(int b,int t)
 {
     for(int i=19;i>=0;i--)
     {
-        if(deph[jump[b][i]]>=deph[t]) b=jump[b][i];
+        if(deph[jump[b][i].first]>=deph[t]) b=jump[b][i].first;
     }
     return b;
 }
@@ -42,11 +48,11 @@ int lca(int a, int b)
     {
         if(jump[a][i]!=jump[b][i])
         {
-            a=jump[a][i];
-            b=jump[b][i];
+            a=jump[a][i].first;
+            b=jump[b][i].first;
         }
     }
-    return jump[a][0];
+    return jump[a][0].first;
 }
 
 int main()
