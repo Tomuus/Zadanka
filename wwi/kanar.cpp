@@ -22,30 +22,35 @@ void bfs(int s){
     q.pop_front();
     for (auto i : graf[a])
     {
+
       cout<<'e'<<i<<endl;
-        if (visited[i]) continue;
-        if (i == a+100'007 and !rail) continue;
-        if (i == a+100'007)
-        {
-          visited[i] = true;
-          odl[i] = odl[a];
-          q.push_front({i,false});
-          cout<<"swap"<<endl;
-          continue;
-        }
+      if (visited[i] and odl[i]>odl[a]+1) {odl[i] = odl[a]+1; continue;}
+      if (visited[i] and (i==a+100'007 or i==a-100'007) and odl[i]>odl[a]) {odl[i] = odl[a]; continue;}
+      cout<<odl[i]<<' '<<odl[a]+1<<'k'<<endl;
+      if (visited[i]) continue;
+      if (i == a+100'007 and !rail) continue;
+      if (i == a+100'007)
+      {
         visited[i] = true;
-        odl[i] = odl[a] + 1;
-        cout<<"push"<<i;
-        if ( i < 100'007 ) q.push_back({i, rail});
-        else {
-          q.push_back({i, rail});
-          if (!visited[i-100'007]) {
-            visited[i - 100'007] = true;
-            odl[i-100'007] = odl[a] + 1;
-            q.push_front({i-100'007, false});
-          }
-        }
-     }
+        odl[i] = odl[a];
+        q.push_front({i,false});
+        cout<<"swap"<<endl;
+        continue;
+      }
+      visited[i] = true;
+      odl[i] = odl[a] + 1;
+      cout<<"push"<<i<<endl;
+      q.push_back({i,rail});
+      /*        if ( i < 100'007 ) q.push_back({i, rail});
+                else {
+                q.push_back({i, rail});
+                if (!visited[i-100'007]) {
+                visited[i - 100'007] = true;
+                odl[i-100'007] = odl[a] + 1;
+                q.push_front({i-100'007, false});
+                }
+                }*/
+    }
   }
   return;
 } 
